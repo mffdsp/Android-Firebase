@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "928384145712",
+    "firebase_url": "https://tentativa-f6c9e.firebaseio.com",
+    "project_id": "tentativa-f6c9e",
+    "storage_bucket": "tentativa-f6c9e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:928384145712:android:0de4edec3238d688c390f5",
+        "android_client_info": {
+          "package_name": "com.example.tentativa"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "928384145712-4tt8ipintnhok82v1n8mpitg65o0nr7c.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.tentativa",
+            "certificate_hash": "ad0a23be158b6f17af5a694e589c7ef1001b4024"
+          }
+        },
+        {
+          "client_id": "928384145712-jbtutue9ik798abcm1p3ov5ohghcd77p.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCb2o6d7X9KLOqEfki9pu5C8w6szpQzq_Y"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "928384145712-jbtutue9ik798abcm1p3ov5ohghcd77p.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
