@@ -12,6 +12,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import android.app.Notification;
 import android.content.ContentValues;
+import android.content.Intent;
 import android.content.SyncStatusObserver;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -76,7 +77,6 @@ public class MainActivity<mFirebaseRef> extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
 
                 listaDePessoas.clear();
-
                 for (DataSnapshot postSnapshot: snapshot.getChildren()) {
                     Pessoa post = postSnapshot.getValue(Pessoa.class);
                     listaDePessoas.add(post);
@@ -96,6 +96,11 @@ public class MainActivity<mFirebaseRef> extends AppCompatActivity {
         for(Pessoa pessoa : listaDePessoas){
             System.out.println(pessoa.nome + " " + pessoa.data);
         }
+    }
+
+    public void goToLogin(View v){
+        startActivity(new Intent(getBaseContext(), LoginActivity.class));
+        finish();
     }
 
 }

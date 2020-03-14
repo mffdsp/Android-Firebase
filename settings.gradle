@@ -1,2 +1,3 @@
 rootProject.name='Tentativa'
 include ':app'
+startParameter.offline=false
