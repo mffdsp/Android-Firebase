@@ -10,6 +10,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import android.app.Activity;
 import android.app.Notification;
 import android.content.ContentValues;
 import android.content.Intent;
@@ -23,6 +24,8 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import org.w3c.dom.Text;
 
 import java.lang.reflect.Array;
 import java.text.DateFormat;
@@ -46,23 +49,47 @@ public class MainActivity<mFirebaseRef> extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        DB = FirebaseDatabase.getInstance().getReference("name");
+        DB = FirebaseDatabase.getInstance().getReference("mensagens");
 
-        listaDePessoas = new ArrayList<>();
+        InfoClass.LISTA = new ArrayList<>();
 
+        if(InfoClass.SEND){
+            boolean newText = true;
+            for(TextStructure TS: InfoClass.LISTA){
+                System.out.println(TS.getTitle() + " " + InfoClass.title);
+                if(TS.getTitle().equals(InfoClass.title)){
+                    newText = false;
+                }
+            }
+            if(newText){
+                saveToDB();
+            }else Toast.makeText(MainActivity.this, "Não é possível enviar textos com titulos repetidos!", Toast.LENGTH_LONG).show();
+
+            InfoClass.SEND = false;
+        }
+        ((EditText) findViewById(R.id.editText3)).setText(InfoClass.getAccountName());
+        ((EditText) findViewById(R.id.datatext)).setText(InfoClass.getAccountEmail());
         getSupportActionBar().hide();
     }
 
+    @Override
+    public void onBackPressed() {
+        startActivity(new Intent(getBaseContext(), LoginActivity.class));
+        finish();
+    }
 
-    public void saveToDB(View v){
+    public void chooseWhatToDo(View v){
+        startActivity(new Intent(getBaseContext(), OptionScreen.class));
 
-        String name = ((EditText) findViewById(R.id.editText3)).getText().toString();
-        String data = ((EditText) findViewById(R.id.datatext)).getText().toString();
+    }
+    public void saveToDB(){
 
-        Pessoa pessoa = new Pessoa(name, data);
         String id = DB.push().getKey();
 
-        DB.child(id).setValue(pessoa);
+        TextStructure TS = new TextStructure(InfoClass.title, InfoClass.boby, id);
+        TS.EMAIL = InfoClass.getAccountEmail();
+
+        DB.child(id).setValue(TS);
 
         Toast.makeText(this, "SALVANDINHO", Toast.LENGTH_LONG).show();
 
@@ -76,10 +103,15 @@ public class MainActivity<mFirebaseRef> extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
 
-                listaDePessoas.clear();
+                InfoClass.LISTA.clear();
                 for (DataSnapshot postSnapshot: snapshot.getChildren()) {
-                    Pessoa post = postSnapshot.getValue(Pessoa.class);
-                    listaDePessoas.add(post);
+
+                    TextStructure TS = postSnapshot.getValue(TextStructure.class);
+
+                    if(TS.EMAIL.equals(InfoClass.ACCOUNT_EMAIL)) {
+                        InfoClass.LISTA.add(TS);
+                    }
+
                 }
             }
 
@@ -89,13 +121,6 @@ public class MainActivity<mFirebaseRef> extends AppCompatActivity {
             }
         });
 
-    }
-
-    public void loadDB(View v){
-
-        for(Pessoa pessoa : listaDePessoas){
-            System.out.println(pessoa.nome + " " + pessoa.data);
-        }
     }
 
     public void goToLogin(View v){
