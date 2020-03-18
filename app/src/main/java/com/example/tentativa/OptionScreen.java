@@ -19,11 +19,19 @@ public class OptionScreen extends AppCompatActivity {
         finish();
 
     }
-
     public void getButton(View v){
         startActivity(new Intent(getBaseContext(), GetActivity.class));
         finish();
 
 
+    }
+    public void addF(View v){
+        startActivity(new Intent(getBaseContext(), GetUsers.class));
+        finish();
+
+    }
+    public void chato(View v){
+        startActivity(new Intent(getBaseContext(), ChatMaybe.class));
+        finish();
     }
 }

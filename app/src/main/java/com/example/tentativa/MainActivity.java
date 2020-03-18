@@ -15,6 +15,7 @@ import android.app.Notification;
 import android.content.ContentValues;
 import android.content.Intent;
 import android.content.SyncStatusObserver;
+import android.content.pm.ActivityInfo;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
@@ -47,11 +48,17 @@ public class MainActivity<mFirebaseRef> extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
+
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         DB = FirebaseDatabase.getInstance().getReference("mensagens");
 
+        Toast.makeText(MainActivity.this, InfoClass.acc.getEmail(), Toast.LENGTH_LONG).show();
+
         InfoClass.LISTA = new ArrayList<>();
+
+        this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_FULL_SENSOR);
 
         if(InfoClass.SEND){
             boolean newText = true;
@@ -104,9 +111,15 @@ public class MainActivity<mFirebaseRef> extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
 
                 InfoClass.LISTA.clear();
+                InfoClass.USERS = new ArrayList<>();
+
                 for (DataSnapshot postSnapshot: snapshot.getChildren()) {
 
                     TextStructure TS = postSnapshot.getValue(TextStructure.class);
+
+                    if(!InfoClass.USERS.contains(TS.EMAIL)) {
+                        InfoClass.USERS.add(TS.EMAIL);
+                    }
 
                     if(TS.EMAIL.equals(InfoClass.ACCOUNT_EMAIL)) {
                         InfoClass.LISTA.add(TS);

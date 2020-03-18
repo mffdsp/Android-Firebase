@@ -2,6 +2,8 @@ package com.example.tentativa;
 
 import android.net.Uri;
 
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
+
 import java.util.List;
 
 public class InfoClass {
@@ -10,10 +12,13 @@ public class InfoClass {
     static String ACCOUNT_EMAIL = "VoidInfo";
     static String ACCOUNT_ID = "VoidInfo";
     static Uri ACCOUNT_PHOTO = null;
+    static GoogleSignInAccount acc = null;
     static boolean SEND = false;
+    static List<String> USERS;
 
     static String title = "VoidInfo";
     static String boby = "VoidInfo";
+
 
     public static List<TextStructure> LISTA;
 
@@ -49,7 +54,9 @@ public class InfoClass {
         ACCOUNT_PHOTO = accountPhoto;
     }
 
-
+    public GoogleSignInAccount getAcc(){
+        return this.acc;
+    }
 
 
 }

@@ -10,13 +10,21 @@
         android:id="@+id/editText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:height="90dp"
+        android:background="@drawable/box_text"
         android:ems="10"
-        android:gravity="start|top"
-        android:inputType="textMultiLine"
+        android:gravity="bottom|clip_horizontal|center|clip_vertical|center_horizontal|center_vertical|fill_vertical"
+        android:hint="Poe ai"
+        android:inputType="textShortMessage|textMultiLine"
+        android:isScrollContainer="true"
+        android:keepScreenOn="true"
+        android:layerType="software"
+        android:maxLength="100"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.728" />
 
     <EditText
         android:id="@+id/editText2"
@@ -27,8 +35,10 @@
         android:text="Titulo"
         app:layout_constraintBottom_toTopOf="@+id/editText"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.353"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.246" />
 
     <Button
         android:id="@+id/button4"
@@ -42,4 +52,5 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="1.0" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

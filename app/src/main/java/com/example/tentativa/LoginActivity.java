@@ -137,7 +137,8 @@ public class LoginActivity extends AppCompatActivity {
         GoogleSignInAccount acc = GoogleSignIn.getLastSignedInAccount(getApplicationContext());
         if(acc != null){
 
-            //Salvando nas variaveis globais ihu
+            //Salvando nas variaveis globai
+            InfoClass.acc = acc;
             InfoClass.setAccountName(acc.getDisplayName());
             InfoClass.setAccountEmail(acc.getEmail());
             InfoClass.setAccountId(acc.getId());
